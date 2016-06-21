@@ -13,6 +13,7 @@ public class CRPluggableScmMaterial extends CRMaterial implements SourceCodeMate
     private String scm_id;
     protected String destination;
     private CRFilter filter;
+    private CRAuthorFilter authorFilter;
 
     public CRPluggableScmMaterial(){
         type = TYPE_NAME;
@@ -23,12 +24,14 @@ public class CRPluggableScmMaterial extends CRMaterial implements SourceCodeMate
         this.scm_id = scmId;
         this.destination = folder;
         this.filter = new CRFilter(Arrays.asList(filters));
+        this.authorFilter = new CRAuthorFilter(Arrays.asList(new String[0]));
     }
-    public CRPluggableScmMaterial(String name, String scmId, String directory, List<String> filter) {
+    public CRPluggableScmMaterial(String name, String scmId, String directory, List<String> filter, List<String> authorFilter) {
         super(TYPE_NAME,name);
         this.scm_id = scmId;
         this.destination = directory;
         this.filter = new CRFilter(filter);
+        this.authorFilter = new CRAuthorFilter(authorFilter);
     }
 
     @Override

@@ -44,20 +44,21 @@ module ApiV1
         alias_method :material_config, :represented
 
         error_representer({
-                            "materialName"      => "name",
-                            "folder"            => "destination",
-                            "autoUpdate"        => "auto_update",
-                            "filterAsString"    => "filter",
-                            "checkexternals"    => "check_externals",
-                            "serverAndPort"     => "port",
-                            "useTickets"        => "use_tickets",
-                            "pipelineName"      => "pipeline",
-                            "stageName"         => "stage",
-                            "pipelineStageName" => "pipeline",
-                            "packageId"         => "ref",
-                            "scmId"             => "ref",
-                            "password"          => "password",
-                            "encryptedPassword" => "encrypted_password",
+                            "materialName"         => "name",
+                            "folder"               => "destination",
+                            "autoUpdate"           => "auto_update",
+                            "filterAsString"       => "filter",
+                            "authorFilterAsString" => "author_filter",
+                            "checkexternals"       => "check_externals",
+                            "serverAndPort"        => "port",
+                            "useTickets"           => "use_tickets",
+                            "pipelineName"         => "pipeline",
+                            "stageName"            => "stage",
+                            "pipelineStageName"    => "pipeline",
+                            "packageId"            => "ref",
+                            "scmId"                => "ref",
+                            "password"             => "password",
+                            "encryptedPassword"    => "encrypted_password",
                           }
         )
 

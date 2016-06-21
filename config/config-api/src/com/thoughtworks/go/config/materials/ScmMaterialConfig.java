@@ -42,6 +42,9 @@ public abstract class ScmMaterialConfig extends AbstractMaterialConfig implement
     @ConfigSubtag
     private Filter filter;
 
+    @ConfigSubtag
+    private AuthorFilter authorFilter;
+
     @ConfigAttribute(value = "invertFilter", optional = true)
     private boolean invertFilter = false;
 
@@ -60,16 +63,19 @@ public abstract class ScmMaterialConfig extends AbstractMaterialConfig implement
     public static final String FILTER = "filterAsString";
     public static final String INVERT_FILTER = "invertFilter";
 
+    public static final String AUTHOR_FILTER = "authorFilterAsString";
+
     public ScmMaterialConfig(String typeName) {
         super(typeName);
     }
 
-    public ScmMaterialConfig(CaseInsensitiveString name, Filter filter, boolean invertFilter, String folder, boolean autoUpdate, String typeName, ConfigErrors errors) {
+    public ScmMaterialConfig(CaseInsensitiveString name, Filter filter, AuthorFilter authorFilter, boolean invertFilter, String folder, boolean autoUpdate, String typeName, ConfigErrors errors) {
         super(typeName, name, errors);
         this.filter = filter;
         this.invertFilter = invertFilter;
         this.folder = folder;
         this.autoUpdate = autoUpdate;
+        this.authorFilter = authorFilter;
     }
 
     @Override protected void appendPipelineUniqueCriteria(Map<String, Object> basicCriteria) {
@@ -115,6 +121,13 @@ public abstract class ScmMaterialConfig extends AbstractMaterialConfig implement
         return filter;
     }
 
+    public AuthorFilter authorFilter() {
+        if (authorFilter == null) {
+            return new AuthorFilter();
+        }
+        return authorFilter;
+    }
+
     public String getFilterAsString() {
         return filter().getStringForDisplay();
     }
@@ -137,6 +150,18 @@ public abstract class ScmMaterialConfig extends AbstractMaterialConfig implement
 
     public void setInvertFilter(boolean value) {
         invertFilter = value;
+    }
+
+    public String getAuthorFilterAsString() {
+        return authorFilter().getStringForDisplay();
+    }
+
+    public AuthorFilter rawAuthorFilter() {
+        return authorFilter;
+    }
+
+    public void setAuthorFilter(AuthorFilter authorFilter) {
+        this.authorFilter = authorFilter;
     }
 
     public String getDescription() {
@@ -231,6 +256,14 @@ public abstract class ScmMaterialConfig extends AbstractMaterialConfig implement
                 this.setFilter(Filter.fromDisplayString(pattern));
             } else {
                 this.setFilter(null);
+            }
+        }
+        if (map.containsKey(AUTHOR_FILTER)) {
+            String pattern = (String) map.get(AUTHOR_FILTER);
+            if (!StringUtil.isBlank(pattern)) {
+                this.setAuthorFilter(AuthorFilter.fromDisplayString(pattern));
+            } else {
+                this.setAuthorFilter(null);
             }
         }
     }

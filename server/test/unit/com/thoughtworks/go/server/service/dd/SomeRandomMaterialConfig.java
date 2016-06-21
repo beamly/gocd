@@ -21,6 +21,7 @@ import java.util.Map;
 import com.thoughtworks.go.config.PipelineConfig;
 import com.thoughtworks.go.config.ValidationContext;
 import com.thoughtworks.go.config.materials.AbstractMaterialConfig;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 
 public class SomeRandomMaterialConfig extends AbstractMaterialConfig {
@@ -55,6 +56,11 @@ public class SomeRandomMaterialConfig extends AbstractMaterialConfig {
 
     @Override
     public Filter filter() {
+        throw new RuntimeException("Ouch!");
+    }
+
+    @Override
+    public AuthorFilter authorFilter() {
         throw new RuntimeException("Ouch!");
     }
 

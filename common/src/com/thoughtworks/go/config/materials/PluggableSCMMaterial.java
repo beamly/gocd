@@ -59,6 +59,8 @@ public class PluggableSCMMaterial extends AbstractMaterial {
 
     private Filter filter;
 
+    private AuthorFilter authorFilter;
+
     public PluggableSCMMaterial() {
         super(TYPE);
     }
@@ -75,11 +77,12 @@ public class PluggableSCMMaterial extends AbstractMaterial {
         this.scmConfig = config.getSCMConfig();
         this.folder = config.getFolder();
         this.filter = config.filter();
+        this.authorFilter = config.authorFilter();
     }
 
     @Override
     public MaterialConfig config() {
-        return new PluggableSCMMaterialConfig(name, scmConfig, folder, filter);
+        return new PluggableSCMMaterialConfig(name, scmConfig, folder, filter, authorFilter);
     }
 
     @Override
@@ -122,6 +125,14 @@ public class PluggableSCMMaterial extends AbstractMaterial {
 
     public void setFilter(Filter filter) {
         this.filter = filter;
+    }
+
+    public AuthorFilter getAuthorFilter() {
+        return authorFilter;
+    }
+
+    public void setAuthorFilter(AuthorFilter authorFilter) {
+        this.authorFilter = authorFilter;
     }
 
     public String getPluginId() {

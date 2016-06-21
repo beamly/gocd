@@ -21,6 +21,7 @@ import java.util.Map;
 
 import com.thoughtworks.go.config.*;
 import com.thoughtworks.go.config.materials.AbstractMaterialConfig;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 
 @ConfigInterface
@@ -31,6 +32,8 @@ public interface MaterialConfig extends Serializable, Validatable {
     CaseInsensitiveString getName();
 
     Filter filter();
+
+    AuthorFilter authorFilter();
 
     boolean isInvertFilter();
 

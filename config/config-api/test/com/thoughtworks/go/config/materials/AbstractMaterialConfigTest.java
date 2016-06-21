@@ -183,6 +183,11 @@ public class AbstractMaterialConfigTest {
         }
 
         @Override
+        public AuthorFilter authorFilter() {
+            return null;
+        }
+
+        @Override
         public boolean isInvertFilter() {
             return false;
         }

@@ -76,7 +76,7 @@ public class MaterialConfigsMother {
 
     public static PluggableSCMMaterialConfig pluggableSCMMaterialConfig() {
         Filter filter = new Filter(new IgnoredFiles("**/*.html"), new IgnoredFiles("**/foobar/"));
-         return pluggableSCMMaterialConfig("scm-id", "des-folder", filter);
+         return pluggableSCMMaterialConfig("scm-id", "des-folder", filter, new AuthorFilter());
     }
 
     public static PluggableSCMMaterialConfig pluggableSCMMaterialConfigWithConfigProperties(String... properties) {
@@ -87,11 +87,11 @@ public class MaterialConfigsMother {
             configuration.add(configurationProperty);
         }
         scmConfig.setConfiguration(configuration);
-        return new PluggableSCMMaterialConfig(null, scmConfig, "des-folder", null);
+        return new PluggableSCMMaterialConfig(null, scmConfig, "des-folder", null, null);
     }
 
-    public static PluggableSCMMaterialConfig pluggableSCMMaterialConfig(String scmId, String destinationFolder, Filter filter) {
-        return new PluggableSCMMaterialConfig(null, SCMMother.create(scmId), destinationFolder, filter);
+    public static PluggableSCMMaterialConfig pluggableSCMMaterialConfig(String scmId, String destinationFolder, Filter filter, AuthorFilter authorFilter) {
+        return new PluggableSCMMaterialConfig(null, SCMMother.create(scmId), destinationFolder, filter, authorFilter);
     }
 
     public static DependencyMaterialConfig dependencyMaterialConfig(String pipelineName, String stageName) {
@@ -104,7 +104,7 @@ public class MaterialConfigsMother {
 
     public static HgMaterialConfig hgMaterialConfigFull() {
         Filter filter = new Filter(new IgnoredFiles("**/*.html"), new IgnoredFiles("**/foobar/"));
-        return new HgMaterialConfig(new HgUrlArgument("http://user:pass@domain/path##branch"),true, filter, false, "dest-folder", new CaseInsensitiveString("hg-material") );
+        return new HgMaterialConfig(new HgUrlArgument("http://user:pass@domain/path##branch"),true, filter, new AuthorFilter(), false, "dest-folder", new CaseInsensitiveString("hg-material") );
     }
 
     public static HgMaterialConfig hgMaterialConfig() {
@@ -128,7 +128,7 @@ public class MaterialConfigsMother {
 
     public static GitMaterialConfig gitMaterialConfig() {
         Filter filter = new Filter(new IgnoredFiles("**/*.html"), new IgnoredFiles("**/foobar/"));
-        return new GitMaterialConfig(new UrlArgument("http://user:password@funk.com/blank"), "branch", "sub_module_folder", false, filter, false, "destination", new CaseInsensitiveString("AwesomeGitMaterial"), true);
+        return new GitMaterialConfig(new UrlArgument("http://user:password@funk.com/blank"), "branch", "sub_module_folder", false, filter, new AuthorFilter(), false, "destination", new CaseInsensitiveString("AwesomeGitMaterial"), true);
     }
 
     public static GitMaterialConfig gitMaterialConfig(String url) {
@@ -170,7 +170,7 @@ public class MaterialConfigsMother {
     }
 
     public static SvnMaterialConfig svnMaterialConfig(String svnUrl, String folder, boolean autoUpdate) {
-        SvnMaterialConfig materialConfig = new SvnMaterialConfig(new UrlArgument(svnUrl), "user", "pass", true, new GoCipher(), autoUpdate, new Filter(new IgnoredFiles("*.doc")), false,
+        SvnMaterialConfig materialConfig = new SvnMaterialConfig(new UrlArgument(svnUrl), "user", "pass", true, new GoCipher(), autoUpdate, new Filter(new IgnoredFiles("*.doc")), new AuthorFilter(), false,
                 folder, new CaseInsensitiveString("svn-material"));
         materialConfig.setPassword("pass");
         return materialConfig;

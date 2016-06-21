@@ -18,10 +18,7 @@ package com.thoughtworks.go.config.materials.git;
 
 import com.thoughtworks.go.config.CaseInsensitiveString;
 import com.thoughtworks.go.config.ConfigSaveValidationContext;
-import com.thoughtworks.go.config.materials.AbstractMaterialConfig;
-import com.thoughtworks.go.config.materials.Filter;
-import com.thoughtworks.go.config.materials.IgnoredFiles;
-import com.thoughtworks.go.config.materials.ScmMaterialConfig;
+import com.thoughtworks.go.config.materials.*;
 import com.thoughtworks.go.util.command.UrlArgument;
 import org.junit.Test;
 
@@ -125,7 +122,7 @@ public class GitMaterialConfigTest {
     @Test
     public void shouldHandleNullBranchAtTheTimeOfMaterialConfigCreation() {
         GitMaterialConfig config1 = new GitMaterialConfig("http://url", null);
-        GitMaterialConfig config2 = new GitMaterialConfig(new UrlArgument("http://url"), null, "sub1", true, new Filter(), false, "folder", new CaseInsensitiveString("git"), false);
+        GitMaterialConfig config2 = new GitMaterialConfig(new UrlArgument("http://url"), null, "sub1", true, new Filter(), new AuthorFilter(), false, "folder", new CaseInsensitiveString("git"), false);
 
         assertThat(config1.getBranch(), is("master"));
         assertThat(config2.getBranch(), is("master"));

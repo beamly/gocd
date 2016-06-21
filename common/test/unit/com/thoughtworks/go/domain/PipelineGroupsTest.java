@@ -209,7 +209,7 @@ public class PipelineGroupsTest {
         final MaterialConfig p4MaterialConfig = new P4MaterialConfig("http://p4_url", "view", "username");
         ((ScmMaterialConfig) p4MaterialConfig).setAutoUpdate(false);
         final MaterialConfig dependencyMaterialConfig = MaterialConfigsMother.dependencyMaterialConfig();
-        final PluggableSCMMaterialConfig pluggableSCMMaterialConfig = MaterialConfigsMother.pluggableSCMMaterialConfig("scm-id-1", null, null);
+        final PluggableSCMMaterialConfig pluggableSCMMaterialConfig = MaterialConfigsMother.pluggableSCMMaterialConfig("scm-id-1", null, null, null);
         pluggableSCMMaterialConfig.getSCMConfig().setAutoUpdate(false);
 
         final PipelineConfig p1 = PipelineConfigMother.pipelineConfig("pipeline1", new MaterialConfigs(svnMaterialConfig), new JobConfigs(new JobConfig(new CaseInsensitiveString("jobName"))));

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Collections;
 
+import com.thoughtworks.go.config.materials.IgnoredAuthors;
 import com.thoughtworks.go.config.materials.IgnoredFiles;
 import com.thoughtworks.go.config.materials.PackageMaterial;
 import com.thoughtworks.go.config.materials.PluggableSCMMaterial;
@@ -129,6 +130,20 @@ public class Modifications extends BaseCollection<Modification> {
         if (materialConfig.filter().shouldNeverIgnore()) {
             return false;
         }
+
+        boolean allModificationsByIgnoredAuthors = materialConfig.authorFilter().size() > 0;
+        for (Modification modification : this) {
+            for (IgnoredAuthors ignore : materialConfig.authorFilter()) {
+                if (!ignore.shouldIgnore(materialConfig, modification.getUserName()) && !ignore.shouldIgnore(materialConfig, modification.getEmailAddress())) {
+                    allModificationsByIgnoredAuthors = false;
+                }
+            }
+        }
+
+        if (allModificationsByIgnoredAuthors) {
+            return true;
+        }
+
         Set<ModifiedFile> allFiles = getAllFiles(this);
         Set<ModifiedFile> ignoredFiles = new HashSet<>();
 

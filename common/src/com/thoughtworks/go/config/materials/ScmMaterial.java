@@ -42,6 +42,7 @@ public abstract class ScmMaterial extends AbstractMaterial {
     public static final String GO_FROM_REVISION = "GO_FROM_REVISION";
 
     protected Filter filter;
+    protected AuthorFilter authorFilter;
     protected String folder;
     protected boolean autoUpdate = true;
     protected boolean invertFilter = false;
@@ -106,6 +107,10 @@ public abstract class ScmMaterial extends AbstractMaterial {
 
     public void setFilter(Filter filter) {
         this.filter = filter;
+    }
+
+    public void setAuthorFilter(AuthorFilter authorFilter) {
+        this.authorFilter = authorFilter;
     }
 
     public void emailContent(StringBuilder content, Modification modification) {

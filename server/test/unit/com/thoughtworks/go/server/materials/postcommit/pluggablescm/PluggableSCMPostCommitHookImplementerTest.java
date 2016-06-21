@@ -40,10 +40,10 @@ public class PluggableSCMPostCommitHookImplementerTest {
 
     @Test
     public void shouldReturnListOfMaterialMatchingTheSCMNameWithCaseInsensitivity() throws Exception {
-        PluggableSCMMaterial material1 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-1", null, null));
-        PluggableSCMMaterial material2 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-2", null, null));
-        PluggableSCMMaterial material3 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-3", null, null));
-        PluggableSCMMaterial material4 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-4", null, null));
+        PluggableSCMMaterial material1 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-1", null, null, null));
+        PluggableSCMMaterial material2 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-2", null, null, null));
+        PluggableSCMMaterial material3 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-3", null, null, null));
+        PluggableSCMMaterial material4 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-4", null, null, null));
         Set<Material> materials = new HashSet<Material>(Arrays.asList(material1, material2, material3, material4));
         Map params = new HashMap();
         params.put(PluggableSCMPostCommitHookImplementer.SCM_NAME, "SCM-MATERIAL-1");
@@ -56,8 +56,8 @@ public class PluggableSCMPostCommitHookImplementerTest {
 
     @Test
     public void shouldReturnEmptyListIfNoMatchingMaterialFound() throws Exception {
-        PluggableSCMMaterial material1 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-1", null, null));
-        PluggableSCMMaterial material2 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-2", null, null));
+        PluggableSCMMaterial material1 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-1", null, null, null));
+        PluggableSCMMaterial material2 = new PluggableSCMMaterial(MaterialConfigsMother.pluggableSCMMaterialConfig("material-2", null, null, null));
         Set<Material> materials = new HashSet<Material>(Arrays.asList(material1, material2));
         Map params = new HashMap();
         params.put(PluggableSCMPostCommitHookImplementer.SCM_NAME, "unknown-scm-name");

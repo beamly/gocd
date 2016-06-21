@@ -101,6 +101,7 @@ public class GitMaterial extends ScmMaterial {
         this(config.getUrl(), config.getBranch(), config.getFolder(), config.isShallowClone());
         this.autoUpdate = config.getAutoUpdate();
         this.filter = config.rawFilter();
+        this.authorFilter = config.rawAuthorFilter();
         this.name = config.getName();
         this.submoduleFolder = config.getSubmoduleFolder();
         this.invertFilter = config.getInvertFilter();
@@ -108,7 +109,7 @@ public class GitMaterial extends ScmMaterial {
 
     @Override
     public MaterialConfig config() {
-        return new GitMaterialConfig(url, branch, submoduleFolder, autoUpdate, filter, invertFilter, folder, name, shallowClone);
+        return new GitMaterialConfig(url, branch, submoduleFolder, autoUpdate, filter, authorFilter, invertFilter, folder, name, shallowClone);
     }
 
     public List<Modification> latestModification(File baseDir, final SubprocessExecutionContext execCtx) {

@@ -43,6 +43,7 @@ public class ConfigConverterTest {
     private ConfigConverter configConverter;
     private GoCipher goCipher;
     private List<String> filter = new ArrayList<>();
+    private List<String> authorFilter = new ArrayList<>();
     private CachedGoConfig cachedGoConfig;
 
     Collection<CREnvironmentVariable> environmentVariables = new ArrayList<>();
@@ -492,7 +493,7 @@ public class ConfigConverterTest {
         cruiseConfig.setSCMs(scms);
         when(cachedGoConfig.currentConfig()).thenReturn(cruiseConfig);
 
-        CRPluggableScmMaterial crPluggableScmMaterial = new CRPluggableScmMaterial("name","scmid","directory",filter);
+        CRPluggableScmMaterial crPluggableScmMaterial = new CRPluggableScmMaterial("name","scmid","directory",filter,authorFilter);
 
         PluggableSCMMaterialConfig pluggableSCMMaterialConfig =
                 (PluggableSCMMaterialConfig)configConverter.toMaterialConfig(crPluggableScmMaterial);

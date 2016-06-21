@@ -94,6 +94,7 @@ public class P4Material extends ScmMaterial implements PasswordEncrypter, Passwo
         this.name = config.getName();
         this.autoUpdate = config.getAutoUpdate();
         this.filter = config.rawFilter();
+        this.authorFilter = config.rawAuthorFilter();
         this.invertFilter = config.getInvertFilter();
         setPassword(config.getPassword());
         this.useTickets = config.getUseTickets();
@@ -110,7 +111,7 @@ public class P4Material extends ScmMaterial implements PasswordEncrypter, Passwo
 
     @Override
     public MaterialConfig config() {
-        return new P4MaterialConfig(serverAndPort, userName, getPassword(), useTickets, view == null ? null : view.getValue(), goCipher, name, autoUpdate, filter, invertFilter, folder);
+        return new P4MaterialConfig(serverAndPort, userName, getPassword(), useTickets, view == null ? null : view.getValue(), goCipher, name, autoUpdate, filter, authorFilter, invertFilter, folder);
     }
 
     public List<Modification> latestModification(File baseDir, final SubprocessExecutionContext execCtx) {

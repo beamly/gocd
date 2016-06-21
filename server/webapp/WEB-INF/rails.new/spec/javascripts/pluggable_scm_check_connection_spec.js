@@ -65,9 +65,16 @@ describe("pluggable_scm_check_connection", function () {
         "\n" +
         "            <h3>Blacklist</h3>\n" +
         "            <div class=\"fieldset\">\n" +
-        "                <label>Enter the paths to be excluded. Separate multiple entries with a comma.</label>\n" +
+        "                <div class=\"form_item_block\">\n" +
+        "                    <label>Enter the paths to be excluded. Separate multiple entries with a comma.</label>\n" +
         "\n" +
-        "                <textarea class=\"form_input MB_focusable\" name=\"material[filterAsString]\" rows=\"2\">scm-filter</textarea>\n" +
+        "                    <textarea class=\"form_input MB_focusable\" name=\"material[filterAsString]\" rows=\"2\">scm-filter</textarea>\n" +
+        "                </div>\n" +
+        "                <div class=\"form_item_block\">\n" +
+        "                    <label>Enter the authors to be excluded. Separate multiple entries with a comma.</label>\n" +
+        "\n" +
+        "                    <textarea class=\"form_input MB_focusable\" name=\"material[authorFilterAsString]\" rows=\"2\">scm-author-filter</textarea>\n" +
+        "                </div>\n" +
         "                <div class=\"clear\"></div>\n" +
         "            </div>\n" +
         "        </div>\n" +
@@ -147,6 +154,7 @@ describe("pluggable_scm_check_connection", function () {
         assertEquals("true", parseData['material[autoUpdate]']);
         assertEquals("scm-destination", parseData['material[folder]']);
         assertEquals("scm-filter", parseData['material[filterAsString]']);
+        assertEquals("scm-author-filter", parseData['material[authorFilterAsString]']);
     });
 
     function parseQueryParams(data) {

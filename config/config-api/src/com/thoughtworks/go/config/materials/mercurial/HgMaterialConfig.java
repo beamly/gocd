@@ -20,6 +20,7 @@ import com.thoughtworks.go.config.CaseInsensitiveString;
 import com.thoughtworks.go.config.ConfigAttribute;
 import com.thoughtworks.go.config.ConfigTag;
 import com.thoughtworks.go.config.ParamsAttributeAware;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 import com.thoughtworks.go.config.materials.ScmMaterialConfig;
 import com.thoughtworks.go.domain.ConfigErrors;
@@ -47,8 +48,8 @@ public class HgMaterialConfig extends ScmMaterialConfig implements ParamsAttribu
         this.folder = folder;
     }
 
-    public HgMaterialConfig(HgUrlArgument url, boolean autoUpdate, Filter filter, boolean invertFilter, String folder, CaseInsensitiveString name) {
-        super(name, filter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
+    public HgMaterialConfig(HgUrlArgument url, boolean autoUpdate, Filter filter, AuthorFilter authorFilter, boolean invertFilter, String folder, CaseInsensitiveString name) {
+        super(name, filter, authorFilter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
         this.url = url;
     }
 

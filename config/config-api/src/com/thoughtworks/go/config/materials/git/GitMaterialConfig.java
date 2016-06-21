@@ -19,6 +19,7 @@ package com.thoughtworks.go.config.materials.git;
 import com.thoughtworks.go.config.CaseInsensitiveString;
 import com.thoughtworks.go.config.ConfigAttribute;
 import com.thoughtworks.go.config.ConfigTag;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 import com.thoughtworks.go.config.materials.ScmMaterialConfig;
 import com.thoughtworks.go.domain.ConfigErrors;
@@ -71,8 +72,8 @@ public class GitMaterialConfig extends ScmMaterialConfig {
     }
 
 
-    public GitMaterialConfig(UrlArgument url, String branch, String submoduleFolder, boolean autoUpdate, Filter filter, boolean invertFilter, String folder, CaseInsensitiveString name, Boolean shallowClone) {
-        super(name, filter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
+    public GitMaterialConfig(UrlArgument url, String branch, String submoduleFolder, boolean autoUpdate, Filter filter, AuthorFilter authorFilter, boolean invertFilter, String folder, CaseInsensitiveString name, Boolean shallowClone) {
+        super(name, filter, authorFilter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
         this.url = url;
         if(branch != null) {
             this.branch = branch;

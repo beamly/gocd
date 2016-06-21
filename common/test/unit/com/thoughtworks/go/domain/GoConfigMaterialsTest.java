@@ -72,9 +72,9 @@ public class GoConfigMaterialsTest {
     @Test
     public void shouldNotIncludePluggableSCMMaterialsWithAutoUpdateFalse() {
         PipelineConfig pipeline1 = pipelineWithManyMaterials(false);
-        PluggableSCMMaterialConfig autoUpdateMaterialConfig = new PluggableSCMMaterialConfig(null, SCMMother.create("scm-id-1"), null, null);
+        PluggableSCMMaterialConfig autoUpdateMaterialConfig = new PluggableSCMMaterialConfig(null, SCMMother.create("scm-id-1"), null, null, null);
         pipeline1.addMaterialConfig(autoUpdateMaterialConfig);
-        PluggableSCMMaterialConfig nonAutoUpdateMaterialConfig = new PluggableSCMMaterialConfig(null, SCMMother.create("scm-id-2"), null, null);
+        PluggableSCMMaterialConfig nonAutoUpdateMaterialConfig = new PluggableSCMMaterialConfig(null, SCMMother.create("scm-id-2"), null, null, null);
         nonAutoUpdateMaterialConfig.getSCMConfig().setAutoUpdate(false);
         pipeline1.addMaterialConfig(nonAutoUpdateMaterialConfig);
 

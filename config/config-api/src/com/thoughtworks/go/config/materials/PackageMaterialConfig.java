@@ -138,6 +138,17 @@ public class PackageMaterialConfig extends AbstractMaterialConfig {
     }
 
     @Override
+    public AuthorFilter authorFilter() {
+        return new AuthorFilter() {
+
+            @Override
+            public boolean shouldNeverIgnore() {
+                return true;
+            }
+        };
+    }
+
+    @Override
     public boolean isInvertFilter() {
         return false;
     }

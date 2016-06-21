@@ -36,6 +36,7 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
     public static final String SCM_ID = "scmId";
     public static final String FOLDER = "folder";
     public static final String FILTER = "filterAsString";
+    public static final String AUTHOR_FILTER = "authorFilterAsString";
 
     @ConfigAttribute(value = "ref")
     private String scmId;
@@ -50,6 +51,9 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
     @ConfigSubtag
     private Filter filter;
 
+    @ConfigSubtag
+    private AuthorFilter authorFilter;
+
     public PluggableSCMMaterialConfig() {
         super(TYPE);
     }
@@ -59,13 +63,14 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
         this.scmId = scmId;
     }
 
-    public PluggableSCMMaterialConfig(CaseInsensitiveString name, SCM scmConfig, String folder, Filter filter) {
+    public PluggableSCMMaterialConfig(CaseInsensitiveString name, SCM scmConfig, String folder, Filter filter, AuthorFilter authorFilter) {
         super(TYPE);
         this.name = name;
         this.scmId = scmConfig == null ? null : scmConfig.getSCMId();
         this.scmConfig = scmConfig;
         this.folder = folder;
         this.filter = filter;
+        this.authorFilter = authorFilter;
     }
 
     public String getScmId() {
@@ -109,8 +114,20 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
         return filter;
     }
 
+    @Override
+    public AuthorFilter authorFilter() {
+        if (authorFilter == null) {
+            return new AuthorFilter();
+        }
+        return authorFilter;
+    }
+
     public String getFilterAsString() {
         return filter().getStringForDisplay();
+    }
+
+    public String getAuthorFilterAsString() {
+        return authorFilter().getStringForDisplay();
     }
 
     @Override
@@ -129,6 +146,10 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
 
     public void setFilter(Filter filter) {
         this.filter = filter;
+    }
+
+    public void setAuthorFilter(AuthorFilter authorFilter) {
+        this.authorFilter = authorFilter;
     }
 
     public String getPluginId() {
@@ -199,6 +220,15 @@ public class PluggableSCMMaterialConfig extends AbstractMaterialConfig {
                 this.setFilter(Filter.fromDisplayString(pattern));
             } else {
                 this.setFilter(null);
+            }
+        }
+
+        if (map.containsKey(AUTHOR_FILTER)) {
+            String pattern = (String) map.get(AUTHOR_FILTER);
+            if (!StringUtil.isBlank(pattern)) {
+                this.setAuthorFilter(AuthorFilter.fromDisplayString(pattern));
+            } else {
+                this.setAuthorFilter(null);
             }
         }
     }

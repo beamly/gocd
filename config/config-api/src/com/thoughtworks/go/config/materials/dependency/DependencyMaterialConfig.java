@@ -24,8 +24,10 @@ import java.util.regex.Pattern;
 
 import com.thoughtworks.go.config.*;
 import com.thoughtworks.go.config.materials.AbstractMaterialConfig;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 import com.thoughtworks.go.domain.ConfigErrors;
+import com.thoughtworks.go.domain.DependencyAuthorFilter;
 import com.thoughtworks.go.domain.DependencyFilter;
 
 import static com.thoughtworks.go.util.ExceptionUtils.bombIfNull;
@@ -85,6 +87,11 @@ public class DependencyMaterialConfig extends AbstractMaterialConfig implements 
     @Override
     public Filter filter() {
         return new DependencyFilter();
+    }
+
+    @Override
+    public AuthorFilter authorFilter() {
+        return new DependencyAuthorFilter();
     }
 
     @Override

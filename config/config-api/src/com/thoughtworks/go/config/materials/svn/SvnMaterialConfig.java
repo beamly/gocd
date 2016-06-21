@@ -17,6 +17,7 @@
 package com.thoughtworks.go.config.materials.svn;
 
 import com.thoughtworks.go.config.*;
+import com.thoughtworks.go.config.materials.AuthorFilter;
 import com.thoughtworks.go.config.materials.Filter;
 import com.thoughtworks.go.config.materials.PasswordAwareMaterial;
 import com.thoughtworks.go.config.materials.ScmMaterialConfig;
@@ -96,8 +97,8 @@ public class SvnMaterialConfig extends ScmMaterialConfig implements ParamsAttrib
         this.folder = folder;
     }
 
-    public SvnMaterialConfig(UrlArgument url, String userName, String password, boolean checkExternals, GoCipher goCipher, boolean autoUpdate, Filter filter, boolean invertFilter, String folder, CaseInsensitiveString name) {
-        super(name, filter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
+    public SvnMaterialConfig(UrlArgument url, String userName, String password, boolean checkExternals, GoCipher goCipher, boolean autoUpdate, Filter filter, AuthorFilter authorFilter, boolean invertFilter, String folder, CaseInsensitiveString name) {
+        super(name, filter, authorFilter, invertFilter, folder, autoUpdate, TYPE, new ConfigErrors());
         this.url = url;
         this.userName = userName;
         this.checkExternals = checkExternals;
